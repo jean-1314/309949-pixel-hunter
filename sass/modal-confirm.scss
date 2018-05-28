@@ -1,0 +1,87 @@
+.modal-confirm__wrap {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  &--hidden {
+    display: none
+  }
+}
+
+.modal-confirm__inner {
+  position: relative;
+  width: 450px;
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e) no-repeat;
+  color: #000000;
+  animation: bounce 0.6s;
+}
+
+.modal-confirm__close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  background-image: url("../img/cross.svg");
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+  font-size: 0;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:focus {
+    opacity: 0.6;
+  }
+}
+
+.modal-confirm__title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-confirm__text {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.modal-confirm__btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+.modal-confirm__btn {
+  padding: 0 20px;
+
+  font-size: 22px;
+  line-height: 30px;
+  height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px transparent;
+  border-style: solid;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    opacity: 0.6;
+  }
+
+  &:first-of-type {
+    margin-right: 15px;
+  }
+}

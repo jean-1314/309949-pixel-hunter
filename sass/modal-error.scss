@@ -1,0 +1,33 @@
+.modal-error__wrap {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  &--hidden {
+    display: none
+  }
+}
+
+.modal-error__inner {
+  position: relative;
+  width: 450px;
+  padding: 50px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #a8c8c4 linear-gradient(to bottom left, #ccdeeb, #84b39e) no-repeat;
+  color: #000000;
+  animation: bounce 0.6s;
+}
+
+.modal-error__text {
+  font-size: 18px;
+}
