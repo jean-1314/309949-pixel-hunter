@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Иван Савитский](https://up.htmlacademy.ru/ecmascript/5/user/309949).
-* Наставник: `Неизвестно`.
+* Наставник: `Нет наставника`.
 
 ---
 
