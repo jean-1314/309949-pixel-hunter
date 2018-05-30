@@ -5,9 +5,7 @@ const Arrows = {
   RIGHT: 39
 };
 
-// const mainContainer = document.querySelector(`#main`);
 const mainCentral = document.querySelector(`.central`);
-// const introScreen = document.querySelector(`#intro`);
 const greetingsScreen = document.querySelector(`#greeting`);
 const rulesScreen = document.querySelector(`#rules`);
 const gameOneScreen = document.querySelector(`#game-1`);
@@ -111,5 +109,3 @@ document.addEventListener(`DOMContentLoaded`, () => {
   }
   showScreen(greetingsScreen);
 });
-
-
