@@ -18,14 +18,6 @@ const gameScreens = [greetingsScreen, rulesScreen, gameOneScreen, gameTwoScreen,
 const screensCount = gameScreens.length;
 let counter = 1;
 
-const getElementFromTemplate = (content) => {
-  let innerContent = document.createRange().createContextualFragment(content);
-  let node = document.createElement(`div`);
-  node.appendChild(innerContent);
-  let clone = node.cloneNode(true);
-  return clone;
-};
-
 const arrowTemplate = `
   <div class="arrows__wrap">
     <style>
@@ -45,6 +37,14 @@ const arrowTemplate = `
     <button id="rightArrow" class="arrows__btn">-></button>
   </div>
 `;
+
+const getElementFromTemplate = (content) => {
+  let innerContent = document.createRange().createContextualFragment(content);
+  let node = document.createElement(`div`);
+  node.appendChild(innerContent);
+  let clone = node.cloneNode(true);
+  return clone;
+};
 
 const createElement = (template) => {
   const outer = document.createElement(`div`);
@@ -84,11 +84,11 @@ document.addEventListener(`keydown`, (evt) => {
     counter++;
   }
 
-  if (evt.altKey && evt.keyCode === Arrows.RIGHT) {
+  if (evt.keyCode === Arrows.RIGHT) {
     showNextScreen();
   }
 
-  if (evt.altKey && evt.keyCode === Arrows.LEFT) {
+  if (evt.keyCode === Arrows.LEFT) {
     showPrevScreen();
   }
 });
