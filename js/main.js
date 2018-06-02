@@ -6,14 +6,10 @@
   };
 
   const mainCentral = document.querySelector(`.central`);
-  const greetingsScreen = document.querySelector(`#greeting`);
-  const rulesScreen = document.querySelector(`#rules`);
-  const gameOneScreen = document.querySelector(`#game-1`);
-  const gameTwoScreen = document.querySelector(`#game-2`);
-  const gameThreeScreen = document.querySelector(`#game-3`);
-  const statsScreen = document.querySelector(`#stats`);
 
-  const gameScreens = [greetingsScreen, rulesScreen, gameOneScreen, gameTwoScreen, gameThreeScreen, statsScreen];
+  const templateScreens = [`#greeting`, `#rules`, `#game-1`, `#game-2`, `#game-3`, `#stats`];
+
+  const gameScreens = templateScreens.map((template) => document.querySelector(template));
 
   const screensCount = gameScreens.length;
   let counter = 1;
@@ -107,5 +103,5 @@
     });
   }
 
-  showScreen(greetingsScreen);
+  showScreen(gameScreens[0]);
 }());
