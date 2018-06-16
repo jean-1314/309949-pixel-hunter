@@ -17,4 +17,6 @@ const uncheckRadioBtn = (buttons) => {
   });
 };
 
-export {showScreen, createElement, uncheckRadioBtn};
+const getRandomArrayElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+export {showScreen, createElement, uncheckRadioBtn, getRandomArrayElement};

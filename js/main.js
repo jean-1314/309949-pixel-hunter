@@ -1,4 +1,4 @@
-import introElement from './game-screens/intro';
+import introElement from './screens/intro';
 import {showScreen} from './util';
 
 showScreen(introElement);
