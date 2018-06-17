@@ -1,8 +1,10 @@
 import {createElement, showScreen, uncheckRadioBtn} from '../util';
-import gameTwoElement from './game-2';
 import greetingElement from './greeting';
 import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
+import {ingameStats} from './ingame-stats';
+import {renderGame} from '../game-functions/game-render';
+import {gameState} from '../data/state';
 
 const gameOneTemplate = `
   <div class="game">
@@ -31,8 +33,7 @@ const gameOneTemplate = `
         </label>
       </div>
     </form>
-    <!-- <div class="stats">
-    </div> -->
+    ${ingameStats}
   </div>
 `;
 
@@ -55,7 +56,8 @@ questionArray.forEach((element) => {
   element.addEventListener(`change`, () => {
     if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
       uncheckRadioBtn(questionArray);
-      showScreen(gameTwoElement);
+      --gameState.answersRemaining;
+      showScreen(renderGame());
     }
   });
 });

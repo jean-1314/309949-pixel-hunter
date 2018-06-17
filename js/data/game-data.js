@@ -1,6 +1,6 @@
 const initialState = {
   TIME: 30,
-  LIVES: 3
+  LIVES: 3,
 };
 
 const gameConsts = {
@@ -10,32 +10,19 @@ const gameConsts = {
   BONUS: 50,
 };
 
-const gameTypes = [
-  {
-    type: `tinder-like`,
-    text: `Угадайте, фото или рисунок?`
-  },
-  {
-    type: `two-of-two`,
-    text: `Угадайте для кажого изображения: фото или рисунок?`
-  },
-  {
-    type: `one-of-three`,
-    text: `Найдите рисунок среди изображений.`
-  }
-];
+const gameTypes = [`two-of-two`, `tinder-like`, `one-of-three`];
 
-const answerTiming = {
-  FAST_ANSWER: 10,
-  SLOW_ANSWER: 20
-};
+// const answerTiming = {
+//   FAST_ANSWER: 10,
+//   SLOW_ANSWER: 20
+// };
+//
+// const answerTypes = {
+//   NORMAL: `correct`,
+//   FAST: `fast`,
+//   SLOW: `slow`,
+//   WRONG: `wrong`,
+//   UNKNOWN: `unknown`
+// };
 
-const answerTypes = {
-  NORMAL: `correct`,
-  FAST: `fast`,
-  SLOW: `slow`,
-  WRONG: `wrong`,
-  UNKNOWN: `unknown`
-};
-
-export {initialState, gameConsts, answerTiming, gameTypes, answerTypes};
+export {initialState, gameConsts, gameTypes};

@@ -7,5 +7,7 @@ export const gameState = {
   gameScore: 0,
   slowAnswers: 0,
   fastAnswers: 0,
-  answers: Array(gameConsts.MIN_ANSWERS).fill(`unknown`)
+  answers: Array(gameConsts.MIN_ANSWERS).fill(`unknown`),
+  answersRemaining: gameConsts.MIN_ANSWERS,
+  currentGameType: ``,
 };

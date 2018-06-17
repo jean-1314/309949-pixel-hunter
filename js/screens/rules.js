@@ -1,8 +1,8 @@
 import {createElement, showScreen} from '../util';
-import gameOneElement from './game-1';
 import greetingElement from './greeting';
 import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
+import {renderGame} from '../game-functions/game-render';
 
 const rulestemplate = `
   <div class="rules">
@@ -29,7 +29,6 @@ const rulesElement = createElement(`
   ${footer}
 `);
 
-
 const nextBtn = rulesElement.querySelector(`.continue`);
 const form = rulesElement.querySelector(`.rules__form`);
 const nameInput = rulesElement.querySelector(`.rules__input`);
@@ -46,7 +45,7 @@ nameInput.addEventListener(`input`, () => {
 
 form.addEventListener(`submit`, (event) => {
   event.preventDefault();
-  showScreen(gameOneElement);
+  showScreen(renderGame());
   clearInput();
 });
 

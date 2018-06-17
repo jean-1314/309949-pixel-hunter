@@ -1,8 +1,10 @@
 import {createElement, showScreen} from '../util';
-import statsElement from './stats';
 import greetingElement from './greeting';
 import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
+import {renderGame} from '../game-functions/game-render';
+import {gameState} from '../data/state';
+import {ingameStats} from './ingame-stats';
 
 const gameThreeTemplate = `
   <div class="game">
@@ -18,20 +20,7 @@ const gameThreeTemplate = `
         <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
       </div>
     </form>
-    <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
-    </div>
+    ${ingameStats}
   </div>
 `;
 
@@ -46,7 +35,8 @@ const questionArray = [...gameThreeElement.querySelectorAll(`.game__option`)];
 
 questionArray.forEach((element) => {
   element.addEventListener(`click`, () => {
-    showScreen(statsElement);
+    --gameState.answersRemaining;
+    showScreen(renderGame());
   });
 });
 
