@@ -1,13 +1,4 @@
-import {createElement, showScreen} from '../util';
-import greetingElement from './greeting';
-
-const introElement = createElement(`
-  <div id="main" class="central__content">
-    <div id="intro" class="intro">
-      <h1 class="intro__asterisk">*</h1>
-      <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    </div>
-  </div>
+const footer = `
   <footer class="footer">
     <a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
     <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
@@ -18,10 +9,6 @@ const introElement = createElement(`
       <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
     </div>
   </footer>
-`);
+`;
 
-const asterisk = introElement.querySelector(`.intro__asterisk`);
-
-asterisk.addEventListener(`click`, () => showScreen(greetingElement));
-
-export default introElement;
+export default footer;

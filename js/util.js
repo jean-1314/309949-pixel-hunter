@@ -11,10 +11,8 @@ const showScreen = (screen) => {
   mainCentral.appendChild(screen);
 };
 
-const uncheckRadioBtn = (buttons) => {
-  buttons.forEach((button) => {
-    button.checked = false;
-  });
+const checked = (elem) => {
+  return elem.checked;
 };
 
-export {showScreen, createElement, uncheckRadioBtn};
+export {showScreen, createElement, checked};
