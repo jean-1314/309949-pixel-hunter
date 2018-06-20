@@ -11,12 +11,8 @@ const showScreen = (screen) => {
   mainCentral.appendChild(screen);
 };
 
-const uncheckRadioBtn = (buttons) => {
-  buttons.forEach((button) => {
-    button.checked = false;
-  });
+const checked = (elem) => {
+  return elem.checked;
 };
 
-const getRandomArrayElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-export {showScreen, createElement, uncheckRadioBtn, getRandomArrayElement};
+export {showScreen, createElement, checked};

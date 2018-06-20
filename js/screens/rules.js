@@ -2,7 +2,8 @@ import {createElement, showScreen} from '../util';
 import greetingElement from './greeting';
 import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
-import {renderGame} from '../game-functions/game-render';
+import {initGame} from './game';
+import {resetState} from '../game-functions/reset-state';
 
 const rulestemplate = `
   <div class="rules">
@@ -45,7 +46,8 @@ nameInput.addEventListener(`input`, () => {
 
 form.addEventListener(`submit`, (event) => {
   event.preventDefault();
-  showScreen(renderGame());
+  resetState();
+  initGame();
   clearInput();
 });
 

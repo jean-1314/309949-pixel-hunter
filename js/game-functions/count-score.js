@@ -1,3 +1,4 @@
+// Now not in use
 const countScore = (answers, lives, score = 0) => {
   answers.forEach((answer) => {
     if (answer.correct) {

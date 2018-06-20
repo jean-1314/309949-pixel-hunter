@@ -1,3 +1,4 @@
+// Now not in use
 export default class Timer {
 
   constructor(time, callback) {

@@ -1,3 +1,13 @@
-export default (gameState) => `<ul class="stats">
-    ${gameState.answers.map((answerType) => `<li class="stats__result stats__result--${answerType}"></li>`).join(``)}
-  </ul>`;
+import {renderResults} from '../game-functions/render-results';
+
+const inGameStats = () => {
+  return `
+    <div class="stats">
+      <ul class="stats">
+        ${renderResults()}
+      </ul>
+    </div>
+  `;
+};
+
+export {inGameStats};
