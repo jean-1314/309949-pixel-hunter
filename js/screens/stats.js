@@ -2,7 +2,7 @@ import {createElement, showScreen} from '../util';
 import greetingElement from './greeting';
 import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
-import {gameState} from '../data/state';
+import {gameState, playerAnswers} from '../data/state';
 import {renderResults} from '../game-functions/render-results';
 import {countStats, countScore} from '../game-functions/count-stats';
 import {gameConsts} from '../data/game-data';
@@ -24,7 +24,7 @@ const renderStatsTemplate = () => {
           <td class="result__points">
           ${gameState.victory ? `×&nbsp;${gameConsts.CORRECT_ANSWER}` : ``}
           </td>
-          <td class="result__total">${gameState.victory ? countStats(gameState.answers) : gameConsts.FAIL}</td>
+          <td class="result__total">${gameState.victory ? countStats(playerAnswers) : gameConsts.FAIL}</td>
         </tr>
         ${gameState.fastAnswers ? `<tr>
           <td></td>
@@ -53,7 +53,7 @@ const renderStatsTemplate = () => {
         ` : ``}
         ${gameState.victory ? `
           <tr>
-          <td colspan="5" class="result__total result__total--final">${countScore(countStats(gameState.answers), gameState.fastAnswers, gameState.slowAnswers, gameState.lives)}</td>
+          <td colspan="5" class="result__total result__total--final">${countScore(countStats(playerAnswers), gameState.fastAnswers, gameState.slowAnswers, gameState.lives)}</td>
         </tr>
         ` : ``}
       </table>

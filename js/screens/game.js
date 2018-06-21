@@ -1,5 +1,5 @@
 import {gameConsts, questions} from '../data/game-data';
-import {gameState} from '../data/state';
+import {gameState, playerAnswers} from '../data/state';
 import {createElement, showScreen, checked} from '../util';
 import greetingElement from './greeting';
 import renderStatsElement from './stats';
@@ -63,7 +63,7 @@ export const initGame = () => {
       } else {
         updateState();
       }
-      gameState.answers.push(answer);
+      playerAnswers.push(answer);
       showNextScreen();
     });
   } else if (gameContent.classList.contains(`game__content--triple`)) {
@@ -76,7 +76,7 @@ export const initGame = () => {
       } else {
         updateState();
       }
-      gameState.answers.push(answer);
+      playerAnswers.push(answer);
       showNextScreen();
     });
   } else {
@@ -94,7 +94,7 @@ export const initGame = () => {
           } else {
             updateState();
           }
-          gameState.answers.push(answer);
+          playerAnswers.push(answer);
           showNextScreen();
         }
       });
