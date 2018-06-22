@@ -9,6 +9,7 @@ const gameConsts = Object.freeze({
   BONUS: 50,
   UNIT: 1,
   FAIL: `FAIL`,
+  ENTER_KEY_CODE: 13,
 });
 
 const initialState = Object.freeze({
@@ -18,6 +19,7 @@ const initialState = Object.freeze({
   SLOW_ANSWERS: 0,
   FAST_ANSWERS: 0,
   CURRENT_LEVEL: 0,
+  CURRENT_ANSWER_STATUS: false,
   RESULTS: ``,
 });
 

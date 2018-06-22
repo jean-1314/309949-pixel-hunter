@@ -7,6 +7,7 @@ export const gameState = {
   slowAnswers: initialState.SLOW_ANSWERS,
   fastAnswers: initialState.FAST_ANSWERS,
   currentLevel: initialState.CURRENT_LEVEL,
+  currentAnswerStatus: initialState.CURRENT_ANSWER_STATUS,
   results: initialState.RESULTS,
 };
 

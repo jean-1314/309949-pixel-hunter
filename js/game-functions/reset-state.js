@@ -9,5 +9,6 @@ export const resetState = () => {
   gameState.slowAnswers = initialState.SLOW_ANSWERS;
   gameState.fastAnswers = initialState.FAST_ANSWERS;
   gameState.currentLevel = initialState.CURRENT_LEVEL;
+  gameState.currentAnswerStatus = initialState.CURRENT_ANSWER_STATUS;
   gameState.results = initialState.RESULTS;
 };

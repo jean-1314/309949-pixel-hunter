@@ -1,59 +1,61 @@
-import {createElement, showScreen} from '../util';
-import greetingElement from './greeting';
 import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
-import {gameState, playerAnswers} from '../data/state';
-import {renderResults} from '../game-functions/render-results';
 import {countStats, countScore} from '../game-functions/count-stats';
 import {gameConsts} from '../data/game-data';
-import {resetState} from '../game-functions/reset-state';
+import AbstractView from './abstract-view';
 
-const renderStatsTemplate = () => {
-  renderResults();
-  return `
+export default class StatsView extends AbstractView {
+  constructor(state, answers) {
+    super();
+    this.state = state;
+    this.answers = answers;
+  }
+  get template() {
+    return `
+    ${header(false)}
     <div class="result">
-      <h1>${gameState.victory ? `Победа!` : `Поражение!`}</h1>
+      <h1>${this.state.victory ? `Победа!` : `Поражение!`}</h1>
       <table class="result__table">
         <tr>
           <td class="result__number">1.</td>
           <td colspan="2">
             <ul class="stats">
-              ${gameState.results}
+              ${this.state.results}
             </ul>
           </td>
           <td class="result__points">
-          ${gameState.victory ? `×&nbsp;${gameConsts.CORRECT_ANSWER}` : ``}
+          ${this.state.victory ? `×&nbsp;${gameConsts.CORRECT_ANSWER}` : ``}
           </td>
-          <td class="result__total">${gameState.victory ? countStats(playerAnswers) : gameConsts.FAIL}</td>
+          <td class="result__total">${this.state.victory ? countStats(this.answers) : gameConsts.FAIL}</td>
         </tr>
-        ${gameState.fastAnswers ? `<tr>
+        ${this.state.fastAnswers ? `<tr>
           <td></td>
           <td class="result__extra">Бонус за скорость:</td>
-          <td class="result__extra">${gameState.fastAnswers}&nbsp;<span class="stats__result stats__result--fast"></span></td>
+          <td class="result__extra">${this.state.fastAnswers}&nbsp;<span class="stats__result stats__result--fast"></span></td>
           <td class="result__points">×&nbsp;${gameConsts.BONUS}</td>
-          <td class="result__total">${gameState.fastAnswers * gameConsts.BONUS}</td>
+          <td class="result__total">${this.state.fastAnswers * gameConsts.BONUS}</td>
         </tr>` : ``}
-        ${gameState.victory ? `
+        ${this.state.victory ? `
           <tr>
           <td></td>
           <td class="result__extra">Бонус за жизни:</td>
-          <td class="result__extra">${gameState.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
+          <td class="result__extra">${this.state.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
           <td class="result__points">×&nbsp;${gameConsts.BONUS}</td>
-          <td class="result__total">${gameState.lives * gameConsts.BONUS}</td>
+          <td class="result__total">${this.state.lives * gameConsts.BONUS}</td>
         </tr>
         ` : ``}
-        ${gameState.slowAnswers ? `
+        ${this.state.slowAnswers ? `
           <tr>
           <td></td>
           <td class="result__extra">Штраф за медлительность:</td>
-          <td class="result__extra">${gameState.slowAnswers}&nbsp;<span class="stats__result stats__result--slow"></span></td>
+          <td class="result__extra">${this.state.slowAnswers}&nbsp;<span class="stats__result stats__result--slow"></span></td>
           <td class="result__points">×&nbsp;${gameConsts.BONUS}</td>
-          <td class="result__total">-${gameState.slowAnswers * gameConsts.BONUS}</td>
+          <td class="result__total">-${this.state.slowAnswers * gameConsts.BONUS}</td>
         </tr>
         ` : ``}
-        ${gameState.victory ? `
+        ${this.state.victory ? `
           <tr>
-          <td colspan="5" class="result__total result__total--final">${countScore(countStats(playerAnswers), gameState.fastAnswers, gameState.slowAnswers, gameState.lives)}</td>
+          <td colspan="5" class="result__total result__total--final">${countScore(countStats(this.answers), this.state.fastAnswers, this.state.slowAnswers, this.state.lives)}</td>
         </tr>
         ` : ``}
       </table>
@@ -110,25 +112,18 @@ const renderStatsTemplate = () => {
         </tr>
       </table>
     </div>
-  `;
-};
-
-const renderStatsElement = () => {
-  const renderedStats = createElement(`
-    ${header(false)}
-    ${renderStatsTemplate()}
     ${footer}
-  `);
+  `;
+  }
 
-  const returnBtn = renderedStats.querySelector(`.back`);
-  if (returnBtn) {
+  bind() {
+    const returnBtn = this.element.querySelector(`.back`);
     returnBtn.addEventListener(`click`, () => {
-      resetState();
-      showScreen(greetingElement);
+      this.onReturn();
     });
   }
 
-  return (renderedStats);
-};
+  onReturn() {
 
-export default renderStatsElement;
+  }
+}
