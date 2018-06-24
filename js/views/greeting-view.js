@@ -1,8 +1,5 @@
 import footer from '../page-elements/footer';
 import AbstractView from './abstract-view';
-import {gameConsts} from '../data/game-data';
-
-const enterKey = gameConsts.ENTER_KEY_CODE;
 
 export default class GreetingView extends AbstractView {
   get template() {
@@ -28,11 +25,6 @@ export default class GreetingView extends AbstractView {
     const arrow = this.element.querySelector(`.greeting__continue`);
     arrow.addEventListener(`click`, () => {
       this.onEvent();
-    });
-    arrow.addEventListener(`keydown`, ({keyCode}) => {
-      if (keyCode === enterKey) {
-        this.onEvent();
-      }
     });
   }
 

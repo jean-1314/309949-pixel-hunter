@@ -1,10 +1,10 @@
 import {renderResults} from '../game-functions/render-results';
 
-const inGameStats = () => {
+const inGameStats = (state, answers) => {
   return `
     <div class="stats">
       <ul class="stats">
-        ${renderResults()}
+        ${renderResults(state, answers)}
       </ul>
     </div>
   `;

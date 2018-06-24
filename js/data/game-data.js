@@ -1,15 +1,13 @@
 import {temporaryImages} from './temp-images';
 
 const gameConsts = Object.freeze({
-  IS_GAME_SCREEN: true,
   MIN_ANSWERS: 10,
   CORRECT_ANSWER: 100,
-  FAST_ANSWER: 10,
-  SLOW_ANSWER: 20,
+  FAST_ANSWER: 20,
+  SLOW_ANSWER: 10,
   BONUS: 50,
   UNIT: 1,
   FAIL: `FAIL`,
-  ENTER_KEY_CODE: 13,
 });
 
 const initialState = Object.freeze({
@@ -21,6 +19,7 @@ const initialState = Object.freeze({
   CURRENT_LEVEL: 0,
   CURRENT_ANSWER_STATUS: false,
   RESULTS: ``,
+  IS_GAME_SCREEN: false,
 });
 
 const questions = [

@@ -1,8 +1,9 @@
-import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
-import {countStats, countScore} from '../game-functions/count-stats';
+import {countStats} from '../game-functions/count-stats';
+import {countScore} from '../game-functions/count-score';
 import {gameConsts} from '../data/game-data';
 import AbstractView from './abstract-view';
+import {returnBtnTemplate} from '../page-elements/return-button';
 
 export default class StatsView extends AbstractView {
   constructor(state, answers) {
@@ -12,7 +13,9 @@ export default class StatsView extends AbstractView {
   }
   get template() {
     return `
-    ${header(false)}
+      <header class="header">
+        ${returnBtnTemplate}
+      </header>
     <div class="result">
       <h1>${this.state.victory ? `Победа!` : `Поражение!`}</h1>
       <table class="result__table">

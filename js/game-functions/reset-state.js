@@ -1,14 +1,15 @@
-import {gameState, playerAnswers} from '../data/state';
 import {initialState} from '../data/game-data';
 
 export const resetState = () => {
-  playerAnswers.length = 0;
-  gameState.victory = initialState.VICTORY;
-  gameState.lives = initialState.LIVES;
-  gameState.time = initialState.TIME;
-  gameState.slowAnswers = initialState.SLOW_ANSWERS;
-  gameState.fastAnswers = initialState.FAST_ANSWERS;
-  gameState.currentLevel = initialState.CURRENT_LEVEL;
-  gameState.currentAnswerStatus = initialState.CURRENT_ANSWER_STATUS;
-  gameState.results = initialState.RESULTS;
+  const state = {
+    victory: initialState.VICTORY,
+    lives: initialState.LIVES,
+    time: initialState.TIME,
+    slowAnswers: initialState.SLOW_ANSWERS,
+    fastAnswers: initialState.FAST_ANSWERS,
+    currentLevel: initialState.CURRENT_LEVEL,
+    currentAnswerStatus: initialState.CURRENT_ANSWER_STATUS,
+    results: initialState.RESULTS,
+  };
+  return state;
 };

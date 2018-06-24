@@ -1,4 +1,4 @@
-export const headerBtnTemplate = `
+export const returnBtnTemplate = `
   <div class="header__back">
     <button class="back">
       <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
