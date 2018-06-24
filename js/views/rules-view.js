@@ -1,14 +1,13 @@
-import {header} from "../page-elements/header";
 import footer from '../page-elements/footer';
 import AbstractView from './abstract-view';
-import {gameConsts} from '../data/game-data';
-
-const game = gameConsts.IS_GAME_SCREEN;
+import {returnBtnTemplate} from '../page-elements/return-button';
 
 export default class RulesView extends AbstractView {
   get template() {
     return `
-      ${header(!game)}
+      <header class="header">
+        ${returnBtnTemplate}
+      </header>
       <div class="rules">
         <h1 class="rules__title">Правила</h1>
         <p class="rules__description">Угадай 10 раз для каждого изображения фото <img

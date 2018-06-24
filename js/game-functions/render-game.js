@@ -1,8 +1,3 @@
-import {inGameStats} from '../page-elements/ingame-stats';
-import {header} from '../page-elements/header';
-import footer from '../page-elements/footer';
-import {gameConsts} from '../data/game-data';
-
 export const renderGame = (level) => {
   let gameContent = ``;
   switch (level.type) {
@@ -72,16 +67,4 @@ export const renderGame = (level) => {
     default: throw new Error(`Unknown game type`);
   }
   return gameContent;
-};
-
-export const renderCurrentGame = (level) => {
-  const gameElement = `
-      ${header(gameConsts.IS_GAME_SCREEN)}
-      <div class="game">
-        ${renderGame(level)}
-        ${inGameStats()}
-      </div>
-      ${footer}
-    `;
-  return gameElement;
 };

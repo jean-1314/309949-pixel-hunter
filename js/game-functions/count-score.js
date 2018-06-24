@@ -1,18 +1,6 @@
-// Now not in use
-const countScore = (answers, lives, score = 0) => {
-  answers.forEach((answer) => {
-    if (answer.correct) {
-      score += 100;
-      score += answer.time < 10 ? 50 : 0;
-      score -= answer.time > 20 ? 50 : 0;
-    }
-  });
+import {gameConsts} from '../data/game-data';
 
-  score += (lives * 50);
-  if (answers.length < 10) {
-    score = -1;
-  }
-  return score;
+export const countScore = (answersNum, fast, slow, lives) => {
+  const finalScore = answersNum + (fast * gameConsts.BONUS) - (slow * gameConsts.BONUS) + (lives * gameConsts.BONUS);
+  return finalScore;
 };
-
-export default countScore;
