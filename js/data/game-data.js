@@ -1,5 +1,3 @@
-import {temporaryImages} from './temp-images';
-
 const gameConsts = Object.freeze({
   MIN_ANSWERS: 10,
   CORRECT_ANSWER: 100,
@@ -22,144 +20,10 @@ const initialState = Object.freeze({
   IS_GAME_SCREEN: false,
 });
 
-const questions = [
-  {
-    type: `tinder-like`,
-    text: `Угадайте, фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.paintings[0],
-        answer: `paint`
-      },
-    ]
-  },
-  {
-    type: `two-of-two`,
-    text: `Угадайте для кажого изображения: фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.paintings[1],
-        answer: `paint`
-      },
-      {
-        img: temporaryImages.photos[0],
-        answer: `photo`
-      },
-    ]
-  },
-  {
-    type: `one-of-three`,
-    text: `Найдите рисунок среди изображений.`,
-    options: [
-      {
-        img: temporaryImages.paintings[2],
-        answer: `paint`
-      },
-      {
-        img: temporaryImages.photos[1],
-        answer: `photo`
-      },
-      {
-        img: temporaryImages.photos[2],
-        answer: `photo`
-      },
-    ]
-  },
-  {
-    type: `tinder-like`,
-    text: `Угадайте, фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.photos[0],
-        answer: `photo`
-      },
-    ]
-  },
-  {
-    type: `two-of-two`,
-    text: `Угадайте для кажого изображения: фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.photos[1],
-        answer: `photo`
-      },
-      {
-        img: temporaryImages.paintings[0],
-        answer: `paint`
-      },
-    ]
-  },
-  {
-    type: `one-of-three`,
-    text: `Найдите рисунок среди изображений.`,
-    options: [
-      {
-        img: temporaryImages.photos[2],
-        answer: `photo`
-      },
-      {
-        img: temporaryImages.paintings[1],
-        answer: `paint`
-      },
-      {
-        img: temporaryImages.photos[0],
-        answer: `photo`
-      },
-    ]
-  },
-  {
-    type: `tinder-like`,
-    text: `Угадайте, фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.paintings[2],
-        answer: `paint`
-      },
-    ]
-  },
-  {
-    type: `two-of-two`,
-    text: `Угадайте для кажого изображения: фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.paintings[0],
-        answer: `paint`
-      },
-      {
-        img: temporaryImages.photos[1],
-        answer: `photo`
-      },
-    ]
-  },
-  {
-    type: `one-of-three`,
-    text: `Найдите рисунок среди изображений.`,
-    options: [
-      {
-        img: temporaryImages.photos[2],
-        answer: `photo`
-      },
-      {
-        img: temporaryImages.photos[0],
-        answer: `photo`
-      },
-      {
-        img: temporaryImages.paintings[1],
-        answer: `paint`
-      },
-    ]
-  },
-  {
-    type: `tinder-like`,
-    text: `Угадайте, фото или рисунок?`,
-    options: [
-      {
-        img: temporaryImages.photos[2],
-        answer: `photo`
-      },
-    ]
-  },
-];
+const QuestionTypes = {
+  PAINTING: `painting`,
+  PHOTO: `photo`,
+};
 
 const answerTypes = {
   NORMAL: `correct`,
@@ -169,4 +33,4 @@ const answerTypes = {
   UNKNOWN: `unknown`
 };
 
-export {initialState, gameConsts, questions, answerTypes};
+export {initialState, gameConsts, QuestionTypes, answerTypes};
