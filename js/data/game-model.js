@@ -1,13 +1,12 @@
 import {resetState} from '../game-functions/reset-state';
-import {gameConsts, initialState, questions} from './game-data';
+import {gameConsts, initialState} from './game-data';
 import Application from '../application';
 import {renderResults} from '../game-functions/render-results';
 import {tick} from '../game-functions/tick';
 
-const getLevel = (state) => questions[state.currentLevel];
-
 export default class GameModel {
-  constructor() {
+  constructor(data) {
+    this.data = data;
     this.restart();
   }
 
@@ -62,7 +61,7 @@ export default class GameModel {
   }
 
   getLevel() {
-    return getLevel(this._state);
+    return this.data[this.state.currentLevel];
   }
 
   tick() {

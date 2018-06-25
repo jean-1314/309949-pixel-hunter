@@ -31,7 +31,7 @@ export default class StatsView extends AbstractView {
           </td>
           <td class="result__total">${this.state.victory ? countStats(this.answers) : gameConsts.FAIL}</td>
         </tr>
-        ${this.state.fastAnswers ? `<tr>
+        ${this.state.fastAnswers && this.state.victory ? `<tr>
           <td></td>
           <td class="result__extra">Бонус за скорость:</td>
           <td class="result__extra">${this.state.fastAnswers}&nbsp;<span class="stats__result stats__result--fast"></span></td>
@@ -47,7 +47,7 @@ export default class StatsView extends AbstractView {
           <td class="result__total">${this.state.lives * gameConsts.BONUS}</td>
         </tr>
         ` : ``}
-        ${this.state.slowAnswers ? `
+        ${this.state.slowAnswers && this.state.victory ? `
           <tr>
           <td></td>
           <td class="result__extra">Штраф за медлительность:</td>

@@ -6,11 +6,29 @@ import RulesScreen from './presenters/rules-screen';
 import GameScreen from './presenters/game-screen';
 import StatsScreen from './presenters/stats-screen';
 import ModalConfirmScreen from './presenters/modal-confirm-screen';
+import ErrorView from './views/modal-error-view';
 
+const checkStatus = (response) => {
+  if (response.status >= 200 || response.status < 300) {
+    return response;
+  } else {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+};
+let gameData;
 export default class Application {
-  static showIntro() {
+
+  static start() {
     const introScreen = new IntroScreen();
     showScreen(introScreen.element);
+    window.fetch(`https://es.dump.academy/pixel-hunter/questions`).
+      then(checkStatus).
+      then((response) => response.json()).
+      then((data) => {
+        gameData = data;
+      }).
+      then(() => Application.showGreeting()).
+      catch(Application.showError);
   }
 
   static showGreeting() {
@@ -24,7 +42,7 @@ export default class Application {
   }
 
   static showGame() {
-    const gameScreen = new GameScreen(new GameModel());
+    const gameScreen = new GameScreen(new GameModel(gameData));
     showScreen(gameScreen.element);
     gameScreen.start();
   }
@@ -37,5 +55,10 @@ export default class Application {
   static showModalConfirm() {
     const modalConfirm = new ModalConfirmScreen();
     mainCentral.appendChild(modalConfirm.element);
+  }
+
+  static showError(error) {
+    const modalError = new ErrorView(error);
+    mainCentral.appendChild(modalError.element);
   }
 }
