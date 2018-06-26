@@ -1,7 +1,7 @@
 import HeaderView from '../views/header-view';
 import GameView from '../views/game-view';
 import Application from '../application';
-import {gameConsts} from '../data/game-data';
+import {GameConsts} from '../data/game-data';
 
 const ONE_SECOND = 1000;
 
@@ -67,10 +67,10 @@ export default class GameScreen {
         correct: true,
         time: this.model.state.time,
       };
-      if (currentAnswer.time > gameConsts.FAST_ANSWER) {
+      if (currentAnswer.time > GameConsts.FAST_ANSWER) {
         this.model.updateFastAnswers();
       }
-      if (currentAnswer.time < gameConsts.SLOW_ANSWER) {
+      if (currentAnswer.time < GameConsts.SLOW_ANSWER) {
         this.model.updateSlowAnswers();
       }
     } else {

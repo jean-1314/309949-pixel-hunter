@@ -1,5 +1,5 @@
 import {resetState} from '../game-functions/reset-state';
-import {gameConsts, initialState} from './game-data';
+import {GameConsts, INITIAL_STATE} from './game-data';
 import Application from '../application';
 import {renderResults} from '../game-functions/render-results';
 import {tick} from '../game-functions/tick';
@@ -45,11 +45,11 @@ export default class GameModel {
   }
 
   canContinue() {
-    return this._state.currentLevel < gameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0 ? true : false;
+    return this._state.currentLevel < GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0 ? true : false;
   }
 
   isVictory() {
-    return this._state.currentLevel === gameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0 ? true : false;
+    return this._state.currentLevel === GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0 ? true : false;
   }
 
   winGame() {
@@ -74,7 +74,7 @@ export default class GameModel {
   }
 
   resetTime() {
-    this._state.time = initialState.TIME;
+    this._state.time = INITIAL_STATE.time;
   }
 
 }

@@ -1,7 +1,7 @@
 import footer from '../page-elements/footer';
 import {countStats} from '../game-functions/count-stats';
 import {countScore} from '../game-functions/count-score';
-import {gameConsts} from '../data/game-data';
+import {GameConsts} from '../data/game-data';
 import AbstractView from './abstract-view';
 import {returnBtnTemplate} from '../page-elements/return-button';
 
@@ -27,24 +27,24 @@ export default class StatsView extends AbstractView {
             </ul>
           </td>
           <td class="result__points">
-          ${this.state.victory ? `×&nbsp;${gameConsts.CORRECT_ANSWER}` : ``}
+          ${this.state.victory ? `×&nbsp;${GameConsts.CORRECT_ANSWER}` : ``}
           </td>
-          <td class="result__total">${this.state.victory ? countStats(this.answers) : gameConsts.FAIL}</td>
+          <td class="result__total">${this.state.victory ? countStats(this.answers) : GameConsts.FAIL}</td>
         </tr>
         ${this.state.fastAnswers && this.state.victory ? `<tr>
           <td></td>
           <td class="result__extra">Бонус за скорость:</td>
           <td class="result__extra">${this.state.fastAnswers}&nbsp;<span class="stats__result stats__result--fast"></span></td>
-          <td class="result__points">×&nbsp;${gameConsts.BONUS}</td>
-          <td class="result__total">${this.state.fastAnswers * gameConsts.BONUS}</td>
+          <td class="result__points">×&nbsp;${GameConsts.BONUS}</td>
+          <td class="result__total">${this.state.fastAnswers * GameConsts.BONUS}</td>
         </tr>` : ``}
         ${this.state.victory ? `
           <tr>
           <td></td>
           <td class="result__extra">Бонус за жизни:</td>
           <td class="result__extra">${this.state.lives}&nbsp;<span class="stats__result stats__result--alive"></span></td>
-          <td class="result__points">×&nbsp;${gameConsts.BONUS}</td>
-          <td class="result__total">${this.state.lives * gameConsts.BONUS}</td>
+          <td class="result__points">×&nbsp;${GameConsts.BONUS}</td>
+          <td class="result__total">${this.state.lives * GameConsts.BONUS}</td>
         </tr>
         ` : ``}
         ${this.state.slowAnswers && this.state.victory ? `
@@ -52,8 +52,8 @@ export default class StatsView extends AbstractView {
           <td></td>
           <td class="result__extra">Штраф за медлительность:</td>
           <td class="result__extra">${this.state.slowAnswers}&nbsp;<span class="stats__result stats__result--slow"></span></td>
-          <td class="result__points">×&nbsp;${gameConsts.BONUS}</td>
-          <td class="result__total">-${this.state.slowAnswers * gameConsts.BONUS}</td>
+          <td class="result__points">×&nbsp;${GameConsts.BONUS}</td>
+          <td class="result__total">-${this.state.slowAnswers * GameConsts.BONUS}</td>
         </tr>
         ` : ``}
         ${this.state.victory ? `
