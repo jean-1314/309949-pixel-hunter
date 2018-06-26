@@ -2,8 +2,9 @@ import ModalConfirmView from '../views/modal-confirm-view';
 import Application from '../application';
 
 export default class ModalConfirmScreen {
-  constructor() {
+  constructor(model) {
     this.content = new ModalConfirmView();
+    this.model = model;
     this.root = document.createElement(`div`);
     this.root.appendChild(this.content.element);
     this.init();
@@ -19,6 +20,8 @@ export default class ModalConfirmScreen {
   }
 
   confirm() {
+    this.model.shouldTick = false;
+    clearInterval(this.model.interval);
     this.root.removeChild(this.content.element);
     Application.showGreeting();
   }

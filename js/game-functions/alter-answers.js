@@ -1,18 +1,18 @@
-import {answerTypes, gameConsts} from '../data/game-data';
+import {AnswerTypes, GameConsts} from '../data/game-data';
 
 export const alterAnswers = (answers) => {
   const score = answers.map((item) => {
     let answer = ``;
     if (item.correct) {
-      if (item.time > gameConsts.FAST_ANSWER) {
-        answer = answerTypes.FAST;
-      } else if (item.time < gameConsts.SLOW_ANSWER) {
-        answer = answerTypes.SLOW;
+      if (item.time > GameConsts.FAST_ANSWER) {
+        answer = AnswerTypes.FAST;
+      } else if (item.time < GameConsts.SLOW_ANSWER) {
+        answer = AnswerTypes.SLOW;
       } else {
-        answer = answerTypes.NORMAL;
+        answer = AnswerTypes.NORMAL;
       }
     } else {
-      answer = answerTypes.WRONG;
+      answer = AnswerTypes.WRONG;
     }
     return answer;
   });

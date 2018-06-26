@@ -10,17 +10,16 @@ let questionType = ``;
 
 export default class GameView extends AbstractView {
 
-  constructor(level, state, answers) {
+  constructor(level, answers) {
     super();
     this.level = level;
-    this.state = state;
     this.answers = answers;
   }
   get template() {
     return `
       <div class="game">
         ${renderGame(this.level)}
-        ${inGameStats(this.state, this.answers)}
+        ${inGameStats(this.answers)}
       </div>
       ${footer}
     `;
@@ -32,7 +31,7 @@ export default class GameView extends AbstractView {
     const questionTwoArray = [...this.element.querySelectorAll(`[name='question2']`)];
 
     if (gameContent.classList.contains(`game__content--wide`)) {
-      this.element.addEventListener(`input`, () => {
+      this.element.addEventListener(`change`, () => {
         const value = gameContent.querySelector(`input:checked`).value;
         if (value === this.level.answers[0].type) {
           this.onAnswer(true);

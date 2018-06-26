@@ -1,4 +1,15 @@
-const gameConsts = Object.freeze({
+const INITIAL_STATE = Object.freeze({
+  victory: false,
+  time: 30,
+  lives: 3,
+  slowAnswers: 0,
+  fastAnswers: 0,
+  currentLevel: 0,
+  currentAnswerStatus: false,
+  results: ``,
+});
+
+const GameConsts = Object.freeze({
   MIN_ANSWERS: 10,
   CORRECT_ANSWER: 100,
   FAST_ANSWER: 20,
@@ -8,24 +19,12 @@ const gameConsts = Object.freeze({
   FAIL: `FAIL`,
 });
 
-const initialState = Object.freeze({
-  VICTORY: false,
-  TIME: 30,
-  LIVES: 3,
-  SLOW_ANSWERS: 0,
-  FAST_ANSWERS: 0,
-  CURRENT_LEVEL: 0,
-  CURRENT_ANSWER_STATUS: false,
-  RESULTS: ``,
-  IS_GAME_SCREEN: false,
-});
-
 const QuestionTypes = {
   PAINTING: `painting`,
   PHOTO: `photo`,
 };
 
-const answerTypes = {
+const AnswerTypes = {
   NORMAL: `correct`,
   FAST: `fast`,
   SLOW: `slow`,
@@ -33,4 +32,4 @@ const answerTypes = {
   UNKNOWN: `unknown`
 };
 
-export {initialState, gameConsts, QuestionTypes, answerTypes};
+export {INITIAL_STATE, GameConsts, QuestionTypes, AnswerTypes};

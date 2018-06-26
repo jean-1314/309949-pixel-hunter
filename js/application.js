@@ -7,28 +7,21 @@ import GameScreen from './presenters/game-screen';
 import StatsScreen from './presenters/stats-screen';
 import ModalConfirmScreen from './presenters/modal-confirm-screen';
 import ErrorView from './views/modal-error-view';
+import Loader from './loader';
+import ScoreboardView from './views/scoreboard-view';
 
-const checkStatus = (response) => {
-  if (response.status >= 200 || response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
 let gameData;
 export default class Application {
 
   static start() {
     const introScreen = new IntroScreen();
     showScreen(introScreen.element);
-    window.fetch(`https://es.dump.academy/pixel-hunter/questions`).
-      then(checkStatus).
-      then((response) => response.json()).
+    Loader.loadData().
       then((data) => {
         gameData = data;
-      }).
-      then(() => Application.showGreeting()).
-      catch(Application.showError);
+      })
+      .then(() => Application.showGreeting())
+      .catch(Application.showError);
   }
 
   static showGreeting() {
@@ -41,19 +34,27 @@ export default class Application {
     showScreen(rulesScreen.element);
   }
 
-  static showGame() {
-    const gameScreen = new GameScreen(new GameModel(gameData));
+  static showGame(name) {
+    const gameScreen = new GameScreen(new GameModel(name, gameData));
     showScreen(gameScreen.element);
     gameScreen.start();
   }
 
-  static showStats(state, answers) {
+  static showStats(state, answers, name) {
     const statsScreen = new StatsScreen(state, answers);
     showScreen(statsScreen.element);
+    const playerName = name;
+    const scoreBoard = new ScoreboardView(name);
+    const container = document.querySelector(`.result`);
+    container.appendChild(scoreBoard.element);
+    Loader.saveResults(state, answers, playerName)
+      .then(() => Loader.loadResults(playerName))
+      .then((data) => scoreBoard.showScore(data))
+      .catch(Application.showError);
   }
 
-  static showModalConfirm() {
-    const modalConfirm = new ModalConfirmScreen();
+  static showModalConfirm(model) {
+    const modalConfirm = new ModalConfirmScreen(model);
     mainCentral.appendChild(modalConfirm.element);
   }
 
