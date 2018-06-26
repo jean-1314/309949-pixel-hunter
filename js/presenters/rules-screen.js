@@ -19,7 +19,7 @@ export default class RulesScreen {
   }
 
   submit() {
-    Application.showGame();
+    Application.showGame(name);
   }
 
   goBack() {

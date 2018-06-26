@@ -50,7 +50,8 @@ export default class RulesView extends AbstractView {
     });
 
     returnBtn.addEventListener(`click`, () => {
-      this.onReturn();
+      const name = nameInput.value;
+      this.onReturn(name);
     });
   }
 

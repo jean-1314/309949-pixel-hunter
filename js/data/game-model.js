@@ -5,7 +5,8 @@ import {renderResults} from '../game-functions/render-results';
 import {tick} from '../game-functions/tick';
 
 export default class GameModel {
-  constructor(data) {
+  constructor(name, data) {
+    this.name = name;
     this.data = data;
     this.restart();
   }
