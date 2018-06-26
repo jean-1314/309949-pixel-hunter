@@ -4,6 +4,7 @@ import {countScore} from '../game-functions/count-score';
 import {GameConsts} from '../data/game-data';
 import AbstractView from './abstract-view';
 import {returnBtnTemplate} from '../page-elements/return-button';
+import {inGameStats} from '../page-elements/ingame-stats';
 
 export default class StatsView extends AbstractView {
   constructor(state, answers) {
@@ -23,7 +24,7 @@ export default class StatsView extends AbstractView {
           <td class="result__number">1.</td>
           <td colspan="2">
             <ul class="stats">
-              ${this.state.results}
+              ${inGameStats(this.answers)}
             </ul>
           </td>
           <td class="result__points">

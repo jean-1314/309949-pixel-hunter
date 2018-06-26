@@ -1,7 +1,7 @@
 import {resetState} from '../game-functions/reset-state';
 import {GameConsts, INITIAL_STATE} from './game-data';
 import Application from '../application';
-import {renderResults} from '../game-functions/render-results';
+import {renderIngameStats} from '../game-functions/render-ingame-stats';
 import {tick} from '../game-functions/tick';
 
 export default class GameModel {
@@ -57,7 +57,7 @@ export default class GameModel {
   }
 
   endGame() {
-    renderResults(this._state, this._answers);
+    renderIngameStats(this._answers);
     Application.showStats(this._state, this._answers);
   }
 

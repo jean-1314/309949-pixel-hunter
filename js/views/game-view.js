@@ -20,7 +20,7 @@ export default class GameView extends AbstractView {
     return `
       <div class="game">
         ${renderGame(this.level)}
-        ${inGameStats(this.state, this.answers)}
+        ${inGameStats(this.answers)}
       </div>
       ${footer}
     `;
