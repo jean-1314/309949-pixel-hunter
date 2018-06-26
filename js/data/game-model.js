@@ -59,7 +59,7 @@ export default class GameModel {
 
   endGame() {
     renderIngameStats(this._answers);
-    Application.showStats(this._state, this._answers);
+    Application.showStats(this._state, this._answers, this.name);
   }
 
   getLevel() {

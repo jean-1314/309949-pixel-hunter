@@ -18,7 +18,7 @@ export default class RulesScreen {
     this.content.onReturn = this.goBack.bind(this);
   }
 
-  submit() {
+  submit(name) {
     Application.showGame(name);
   }
 

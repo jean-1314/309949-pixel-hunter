@@ -8,6 +8,7 @@ import StatsScreen from './presenters/stats-screen';
 import ModalConfirmScreen from './presenters/modal-confirm-screen';
 import ErrorView from './views/modal-error-view';
 import Loader from './loader';
+import ScoreboardView from './views/scoreboard-view';
 
 let gameData;
 export default class Application {
@@ -18,9 +19,9 @@ export default class Application {
     Loader.loadData().
       then((data) => {
         gameData = data;
-      }).
-      then(() => Application.showGreeting()).
-      catch(Application.showError);
+      })
+      .then(() => Application.showGreeting())
+      .catch(Application.showError);
   }
 
   static showGreeting() {
@@ -39,9 +40,17 @@ export default class Application {
     gameScreen.start();
   }
 
-  static showStats(state, answers) {
+  static showStats(state, answers, name) {
     const statsScreen = new StatsScreen(state, answers);
     showScreen(statsScreen.element);
+    const playerName = name;
+    const scoreBoard = new ScoreboardView(name);
+    const container = document.querySelector(`.result`);
+    container.appendChild(scoreBoard.element);
+    Loader.saveResults(state, answers, playerName)
+      .then(() => Loader.loadResults(playerName))
+      .then((data) => scoreBoard.showScore(data))
+      .catch(Application.showError);
   }
 
   static showModalConfirm(model) {

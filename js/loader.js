@@ -17,8 +17,12 @@ export default class Loader {
     return fetch(`${SERVER_URL}/questions`).then(checkStatus).then(toJSON);
   }
 
-  static saveResults(data, name = DEFAULT_NAME) {
-    data = Object.assign({name}, data);
+  static saveResults(state, data, name = DEFAULT_NAME) {
+    data = Object.assign({name},
+        {
+          answers: data,
+          state,
+        });
     const requestSettings = {
       body: JSON.stringify(data),
       headers: {
