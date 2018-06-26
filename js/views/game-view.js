@@ -32,7 +32,7 @@ export default class GameView extends AbstractView {
     const questionTwoArray = [...this.element.querySelectorAll(`[name='question2']`)];
 
     if (gameContent.classList.contains(`game__content--wide`)) {
-      this.element.addEventListener(`input`, () => {
+      this.element.addEventListener(`change`, () => {
         const value = gameContent.querySelector(`input:checked`).value;
         if (value === this.level.answers[0].type) {
           this.onAnswer(true);
