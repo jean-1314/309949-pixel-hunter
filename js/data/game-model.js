@@ -8,6 +8,7 @@ export default class GameModel {
   constructor(name, data) {
     this.name = name;
     this.data = data;
+    this.shouldTick = true;
     this.restart();
   }
 
@@ -66,7 +67,9 @@ export default class GameModel {
   }
 
   tick() {
-    this._state.time = tick(this._state.time);
+    if (this.shouldTick) {
+      this._state.time = tick(this._state.time);
+    }
   }
 
   isTimeUp() {

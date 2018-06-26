@@ -44,8 +44,8 @@ export default class Application {
     showScreen(statsScreen.element);
   }
 
-  static showModalConfirm() {
-    const modalConfirm = new ModalConfirmScreen();
+  static showModalConfirm(model) {
+    const modalConfirm = new ModalConfirmScreen(model);
     mainCentral.appendChild(modalConfirm.element);
   }
 

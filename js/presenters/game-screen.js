@@ -9,12 +9,11 @@ export default class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.state);
-    this.content = new GameView(this.model.getLevel(), this.model.state, this.model.answers);
+    this.content = new GameView(this.model.getLevel(), this.model.answers);
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);
     this.updateHeader();
-    this._interval = null;
   }
 
   get element() {
@@ -23,9 +22,8 @@ export default class GameScreen {
 
   start() {
     this.model.resetTime();
-    this.content.onAnswer = this.answer.bind(this);
     this.changeGame();
-    this._interval = setInterval(() => {
+    this.model.interval = setInterval(() => {
       if (!this.model.isTimeUp()) {
         this.model.tick();
         this.updateHeader();
@@ -36,7 +34,7 @@ export default class GameScreen {
   }
 
   stopGame() {
-    clearInterval(this._interval);
+    clearInterval(this.model.interval);
   }
 
   updateHeader() {
@@ -48,7 +46,7 @@ export default class GameScreen {
 
   changeGame() {
     this.updateHeader();
-    const game = new GameView(this.model.getLevel(), this.model.state, this.model.answers);
+    const game = new GameView(this.model.getLevel(), this.model.answers);
     game.onAnswer = this.answer.bind(this);
     this.updateView(game);
   }
@@ -94,6 +92,6 @@ export default class GameScreen {
   }
 
   back() {
-    Application.showModalConfirm();
+    Application.showModalConfirm(this.model);
   }
 }

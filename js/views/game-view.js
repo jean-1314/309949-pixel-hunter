@@ -10,10 +10,9 @@ let questionType = ``;
 
 export default class GameView extends AbstractView {
 
-  constructor(level, state, answers) {
+  constructor(level, answers) {
     super();
     this.level = level;
-    this.state = state;
     this.answers = answers;
   }
   get template() {
