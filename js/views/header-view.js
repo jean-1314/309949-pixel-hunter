@@ -8,6 +8,7 @@ export default class HeaderView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;
+    this.init();
   }
   get template() {
     return `
@@ -20,6 +21,13 @@ export default class HeaderView extends AbstractView {
       </div>
      </header>`;
   }
+
+  init() {
+    if (this.state.time < 6) {
+      this.element.querySelector(`.game__timer`).classList.add(`game__timer--warning`);
+    }
+  }
+
   bind() {
     this.element.querySelector(`.back`).addEventListener(`click`, () => {
       this.onReturn();

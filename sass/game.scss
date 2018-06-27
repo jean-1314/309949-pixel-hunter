@@ -15,6 +15,12 @@
   top: 25px;
   left: 50%;
   transform: translateX(-50%);
+
+  &--warning {
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+  }
 }
 
 .game__lives {
