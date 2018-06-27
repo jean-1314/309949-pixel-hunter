@@ -5,6 +5,7 @@ export default class GreetingScreen {
   constructor() {
     this.content = new GreetingView();
     this.root = document.createElement(`div`);
+    this.root.classList.add(`greeting__wrapper`);
     this.root.appendChild(this.content.element);
     this.init();
   }

@@ -19,3 +19,25 @@ export const resize = (frame, given) => {
   }
   return obj;
 };
+
+export const resizeImages = (element) => {
+  const gameOptions = element.querySelectorAll(`.game__option`);
+  gameOptions.forEach((option) => {
+    const frame = {
+      width: option.clientWidth,
+      height: option.clientHeight,
+    };
+    const imgElement = option.querySelector(`img`);
+    const image = new Image();
+    image.src = imgElement.src;
+    image.onload = () => {
+      const given = {
+        width: image.width,
+        height: image.height,
+      };
+      const newSizes = resize(frame, given);
+      imgElement.width = newSizes.width;
+      imgElement.height = newSizes.height;
+    };
+  });
+};

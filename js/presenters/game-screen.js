@@ -2,6 +2,7 @@ import HeaderView from '../views/header-view';
 import GameView from '../views/game-view';
 import Application from '../application';
 import {GameConsts} from '../data/game-data';
+import {resizeImages} from '../game-functions/resize';
 
 const ONE_SECOND = 1000;
 
@@ -54,6 +55,7 @@ export default class GameScreen {
   updateView(view) {
     this.root.replaceChild(view.element, this.content.element);
     this.content = view;
+    resizeImages(view.element);
   }
 
   answer(answer) {
