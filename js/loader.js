@@ -48,14 +48,11 @@ export default class Loader {
       });
     }
     const preloadImage = (url) => {
-      const asterisk = document.querySelector(`.intro__asterisk`);
-      asterisk.classList.add(`intro__asterisk--rotate`);
       const image = new Image();
       image.src = url;
       image.onload = () => {
         successArray.push(``);
         if (imageArray.length === successArray.length) {
-          asterisk.classList.remove(`intro__asterisk--rotate`);
           Application.showInitialGreeting();
         }
       };

@@ -120,11 +120,11 @@ export default class GameView extends AbstractView {
     }
   }
 
-  onAnswer(answer) {
-    return answer;
-  }
-
   onReturn() {
 
+  }
+
+  onAnswer(answer) {
+    return answer;
   }
 }

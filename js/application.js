@@ -65,7 +65,7 @@ export default class Application {
     const statsScreen = new StatsScreen(state, answers);
     showScreen(statsScreen.element);
     const playerName = name;
-    const scoreBoard = new ScoreboardView(name);
+    const scoreBoard = new ScoreboardView();
     const container = document.querySelector(`.result`);
     container.appendChild(scoreBoard.element);
     Loader.saveResults(state, answers, playerName)

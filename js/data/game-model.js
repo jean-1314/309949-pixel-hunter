@@ -22,31 +22,6 @@ export default class GameModel {
     return this._answers;
   }
 
-  restart() {
-    this._state = resetState();
-    this._answers = [];
-  }
-
-  levelUp() {
-    ++this._state.currentLevel;
-  }
-
-  updateFastAnswers() {
-    ++this._state.fastAnswers;
-  }
-
-  updateSlowAnswers() {
-    ++this._state.slowAnswers;
-  }
-
-  updateAnswers(answer) {
-    this._answers.push(answer);
-  }
-
-  removeLife() {
-    --this._state.lives;
-  }
-
   canContinue() {
     return this._state.currentLevel < GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0;
   }
@@ -68,6 +43,10 @@ export default class GameModel {
     return this.data[this.state.currentLevel];
   }
 
+  resetTime() {
+    this._state.time = INITIAL_STATE.time;
+  }
+
   tick() {
     if (this.shouldTick) {
       this._state.time = tick(this._state.time);
@@ -78,13 +57,34 @@ export default class GameModel {
     return this._state.time === 0;
   }
 
-  resetTime() {
-    this._state.time = INITIAL_STATE.time;
-  }
-
   checkIfDebug() {
     if (this.name === `debug${APP_ID}`) {
       this.debugMode = true;
     }
+  }
+
+  restart() {
+    this._state = resetState();
+    this._answers = [];
+  }
+
+  levelUp() {
+    ++this._state.currentLevel;
+  }
+
+  updateFastAnswers() {
+    ++this._state.fastAnswers;
+  }
+
+  updateSlowAnswers() {
+    ++this._state.slowAnswers;
+  }
+
+  removeLife() {
+    --this._state.lives;
+  }
+
+  updateAnswers(answer) {
+    this._answers.push(answer);
   }
 }
