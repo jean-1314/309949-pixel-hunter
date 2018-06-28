@@ -19,17 +19,17 @@ const GameConsts = Object.freeze({
   FAIL: `FAIL`,
 });
 
-const QuestionTypes = {
+const QuestionTypes = Object.freeze({
   PAINTING: `painting`,
   PHOTO: `photo`,
-};
+});
 
-const AnswerTypes = {
+const AnswerTypes = Object.freeze({
   NORMAL: `correct`,
   FAST: `fast`,
   SLOW: `slow`,
   WRONG: `wrong`,
   UNKNOWN: `unknown`
-};
+});
 
 export {INITIAL_STATE, GameConsts, QuestionTypes, AnswerTypes};

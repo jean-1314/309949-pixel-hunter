@@ -1,5 +1,8 @@
 import AbstractView from './abstract-view';
 import {renderStats} from '../game-functions/render-stats';
+import {GameConsts} from '../data/game-data';
+
+const ADDEND = 2;
 
 export default class ScoreboardView extends AbstractView {
   get template() {
@@ -20,11 +23,11 @@ export default class ScoreboardView extends AbstractView {
 
   showScore(results) {
     this.emptyContainer();
-    if (results.length > 1) {
+    if (results.length > GameConsts.UNIT) {
       results.pop();
       results.reverse();
       this._container.innerHTML = `
-        ${results.map((result, index) => renderStats(result.state, result.answers, index + 2)).join(``)}
+        ${results.map((result, index) => renderStats(result.state, result.answers, index + ADDEND)).join(``)}
       `;
     }
   }

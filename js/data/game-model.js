@@ -48,11 +48,11 @@ export default class GameModel {
   }
 
   canContinue() {
-    return this._state.currentLevel < GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0 ? true : false;
+    return this._state.currentLevel < GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0;
   }
 
   isVictory() {
-    return this._state.currentLevel === GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0 ? true : false;
+    return this._state.currentLevel === GameConsts.MIN_ANSWERS - 1 && this._state.lives >= 0;
   }
 
   winGame() {

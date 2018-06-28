@@ -46,11 +46,11 @@ const debugGame = (gameType, model, element) => {
 
 export default class GameView extends AbstractView {
 
-  constructor(level, answers, model) {
+  constructor(model) {
     super();
-    this.level = level;
-    this.answers = answers;
     this.model = model;
+    this.level = model.getLevel();
+    this.answers = model.answers;
   }
   get template() {
     return `

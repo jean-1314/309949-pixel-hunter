@@ -35,7 +35,7 @@ export default class RulesView extends AbstractView {
     const returnBtn = this.element.querySelector(`.back`);
 
     nameInput.addEventListener(`input`, () => {
-      nextBtn.disabled = nameInput.value !== `` ? false : true;
+      nextBtn.disabled = nameInput.value === ``;
     });
 
     const clearInput = () => {
