@@ -29,6 +29,6 @@ export default class AbstractView {
   }
 
   bind() {
-    // bind handlers if required
+
   }
 }

@@ -1,6 +1,6 @@
 import {AnswerTypes, GameConsts} from '../data/game-data';
 
-export const alterAnswers = (answers) => {
+export const mapAnswers = (answers) => {
   const score = answers.map((item) => {
     let answer = ``;
     if (item.correct) {

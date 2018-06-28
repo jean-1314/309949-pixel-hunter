@@ -1,8 +1,8 @@
 import {GameConsts} from '../data/game-data';
-import {alterAnswers} from './alter-answers';
+import {mapAnswers} from './map-answers';
 
 export const renderIngameStats = (answers) => {
-  const gameResults = alterAnswers(answers);
+  const gameResults = mapAnswers(answers);
   let item = gameResults.reduce((acc, currentValue) => {
     return acc + `<li class="stats__result stats__result--${currentValue}"></li>`;
   }, ``);
