@@ -3,11 +3,13 @@ import {GameConsts, INITIAL_STATE} from './game-data';
 import Application from '../application';
 import {renderIngameStats} from '../game-functions/render-ingame-stats';
 import {tick} from '../game-functions/tick';
+import {APP_ID} from '../util';
 
 export default class GameModel {
   constructor(name, data) {
     this.name = name;
     this.data = data;
+    this.debugMode = false;
     this.shouldTick = true;
     this.restart();
   }
@@ -80,4 +82,9 @@ export default class GameModel {
     this._state.time = INITIAL_STATE.time;
   }
 
+  checkIfDebug() {
+    if (this.name === `debug${APP_ID}`) {
+      this.debugMode = true;
+    }
+  }
 }

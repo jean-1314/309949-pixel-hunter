@@ -1,8 +1,8 @@
 import Application from './application';
+import {APP_ID} from './util';
 
 const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
 const DEFAULT_NAME = `YetAnotherDefaultName`;
-const APP_ID = 22101985;
 
 const checkStatus = (response) => {
   if (response.status >= 200 || response.status < 300) {

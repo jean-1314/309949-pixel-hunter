@@ -10,7 +10,7 @@ export default class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.state);
-    this.content = new GameView(this.model.getLevel(), this.model.answers);
+    this.content = new GameView(this.model.getLevel(), this.model.answers, this.model);
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);
@@ -22,6 +22,7 @@ export default class GameScreen {
   }
 
   start() {
+    this.model.checkIfDebug();
     this.model.resetTime();
     this.changeGame();
     this.model.interval = setInterval(() => {
@@ -47,7 +48,7 @@ export default class GameScreen {
 
   changeGame() {
     this.updateHeader();
-    const game = new GameView(this.model.getLevel(), this.model.answers);
+    const game = new GameView(this.model.getLevel(), this.model.answers, this.model);
     game.onAnswer = this.answer.bind(this);
     this.updateView(game);
   }

@@ -11,7 +11,7 @@ export const renderGame = (level) => {
               <input name="question1" type="radio" value="photo">
               <span>Фото</span>
             </label>
-            <label class="game__answer  game__answer--wide  game__answer--paint">
+            <label class="game__answer  game__answer--wide  game__answer--painting">
               <input name="question1" type="radio" value="painting">
               <span>Рисунок</span>
             </label>
@@ -29,7 +29,7 @@ export const renderGame = (level) => {
               <input name="question1" type="radio" value="photo">
               <span>Фото</span>
             </label>
-            <label class="game__answer game__answer--paint">
+            <label class="game__answer game__answer--painting">
               <input name="question1" type="radio" value="painting">
               <span>Рисунок</span>
             </label>
@@ -40,7 +40,7 @@ export const renderGame = (level) => {
               <input name="question2" type="radio" value="photo">
               <span>Фото</span>
             </label>
-            <label class="game__answer  game__answer--paint">
+            <label class="game__answer  game__answer--painting">
               <input name="question2" type="radio" value="painting">
               <span>Рисунок</span>
             </label>
