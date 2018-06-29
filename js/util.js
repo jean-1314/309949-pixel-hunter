@@ -1,3 +1,5 @@
+const APP_ID = 22101985;
+
 const mainCentral = document.querySelector(`.central`);
 
 const showScreen = (screen) => {
@@ -9,4 +11,4 @@ const checked = (elem) => {
   return elem.checked;
 };
 
-export {showScreen, mainCentral, checked};
+export {APP_ID, showScreen, mainCentral, checked};

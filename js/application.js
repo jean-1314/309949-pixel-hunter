@@ -10,23 +10,44 @@ import ErrorView from './views/modal-error-view';
 import Loader from './loader';
 import ScoreboardView from './views/scoreboard-view';
 
+const TWO_SECONDS = 2000;
 let gameData;
+
+const removeIntroScreen = () => {
+  const introWrapper = document.querySelector(`.intro__wrapper`);
+  if (introWrapper) {
+    const greetingWrapper = document.querySelector(`.greeting__wrapper`);
+    mainCentral.removeChild(introWrapper);
+    greetingWrapper.classList.remove(`greeting__wrapper`, `greeting__wrapper--fadein`);
+  }
+};
+
 export default class Application {
 
   static start() {
     const introScreen = new IntroScreen();
-    showScreen(introScreen.element);
+    mainCentral.appendChild(introScreen.element);
     Loader.loadData().
       then((data) => {
         gameData = data;
       })
-      .then(() => Application.showGreeting())
+      .then(() => Loader.preloadImages(gameData))
       .catch(Application.showError);
+  }
+
+  static showInitialGreeting() {
+    const greetingScreen = new GreetingScreen();
+    const intro = document.querySelector(`.intro__wrapper`);
+    mainCentral.appendChild(greetingScreen.element);
+    greetingScreen.element.classList.add(`greeting__wrapper--fadein`);
+    intro.classList.add(`intro__wrapper--fadeout`);
+    setTimeout(removeIntroScreen, TWO_SECONDS);
   }
 
   static showGreeting() {
     const greetingScreen = new GreetingScreen();
     showScreen(greetingScreen.element);
+    greetingScreen.element.classList.remove(`greeting__wrapper`);
   }
 
   static showRules() {
@@ -44,7 +65,7 @@ export default class Application {
     const statsScreen = new StatsScreen(state, answers);
     showScreen(statsScreen.element);
     const playerName = name;
-    const scoreBoard = new ScoreboardView(name);
+    const scoreBoard = new ScoreboardView();
     const container = document.querySelector(`.result`);
     container.appendChild(scoreBoard.element);
     Loader.saveResults(state, answers, playerName)

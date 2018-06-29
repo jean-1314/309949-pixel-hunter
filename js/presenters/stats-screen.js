@@ -17,10 +17,10 @@ export default class StatsScreen {
   }
 
   init() {
-    this.content.onReturn = this.return.bind(this);
+    this.content.onReturn = this.goBack.bind(this);
   }
 
-  return() {
+  goBack() {
     Application.showGreeting();
   }
 }

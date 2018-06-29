@@ -1,6 +1,8 @@
+import Application from './application';
+import {APP_ID} from './util';
+
 const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
 const DEFAULT_NAME = `YetAnotherDefaultName`;
-const APP_ID = 22101985;
 
 const checkStatus = (response) => {
   if (response.status >= 200 || response.status < 300) {
@@ -35,6 +37,30 @@ export default class Loader {
 
   static loadResults(name = DEFAULT_NAME) {
     return fetch(`${SERVER_URL}/stats/${APP_ID}-${name}`).then(checkStatus).then(toJSON);
+  }
+
+  static preloadImages(data) {
+    const imageArray = [];
+    const successArray = [];
+    for (let item of data) {
+      item.answers.forEach((answer) => {
+        imageArray.push(answer.image.url);
+      });
+    }
+    const preloadImage = (url) => {
+      const image = new Image();
+      image.src = url;
+      image.onload = () => {
+        successArray.push(``);
+        if (imageArray.length === successArray.length) {
+          Application.showInitialGreeting();
+        }
+      };
+
+    };
+    for (let imageUrl of imageArray) {
+      preloadImage(imageUrl);
+    }
   }
 }
 

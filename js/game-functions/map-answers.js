@@ -1,7 +1,7 @@
 import {AnswerTypes, GameConsts} from '../data/game-data';
 
-export const alterAnswers = (answers) => {
-  const score = answers.map((item) => {
+export const mapAnswers = (answers) => {
+  return answers.map((item) => {
     let answer = ``;
     if (item.correct) {
       if (item.time > GameConsts.FAST_ANSWER) {
@@ -16,5 +16,4 @@ export const alterAnswers = (answers) => {
     }
     return answer;
   });
-  return score;
 };

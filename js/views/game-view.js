@@ -3,17 +3,54 @@ import {renderGame} from '../game-functions/render-game';
 import {inGameStats} from '../page-elements/ingame-stats';
 import AbstractView from './abstract-view';
 import footer from '../page-elements/footer';
-import {QuestionTypes} from '../data/game-data';
+import {GameConsts, QuestionTypes} from '../data/game-data';
 
 const description = `Найдите рисунок среди изображений`;
 let questionType = ``;
 
+const debugGame = (gameType, model, element) => {
+  const level = model.data[model.state.currentLevel];
+
+  switch (gameType) {
+    case (`tinder-like`):
+      const correctAnswer = element.querySelector(`.game__answer--${level.answers[0].type}`);
+      correctAnswer.classList.add(`game__answer--correct`);
+      break;
+    case (`two-of-two`):
+      const correctAnswerOne = element.querySelector(`.game__option:first-child .game__answer--${level.answers[0].type}`);
+      const correctAnswerTwo = element.querySelector(`.game__option:nth-child(2) .game__answer--${level.answers[1].type}`);
+      correctAnswerOne.classList.add(`game__answer--correct`);
+      correctAnswerTwo.classList.add(`game__answer--correct`);
+      break;
+    case (`one-of-three`):
+      const questions = [];
+      const answers = level.answers;
+      answers.forEach((answer) => {
+        questions.push(answer.type);
+      });
+      const type = description === level.question ? QuestionTypes.PAINTING : QuestionTypes.PHOTO;
+      const findCorrectElement = (el, i) => {
+        if (el === type) {
+          return i;
+        }
+        return null;
+      };
+      const index = questions.findIndex(findCorrectElement);
+      const correctOption = element.querySelector(`.game__option:nth-child(${index + GameConsts.UNIT})`);
+      correctOption.classList.add(`game__option--correct`);
+      break;
+    default:
+      throw new Error(`Unknown game type`);
+  }
+};
+
 export default class GameView extends AbstractView {
 
-  constructor(level, answers) {
+  constructor(model) {
     super();
-    this.level = level;
-    this.answers = answers;
+    this.model = model;
+    this.level = model.getLevel();
+    this.answers = model.answers;
   }
   get template() {
     return `
@@ -31,6 +68,9 @@ export default class GameView extends AbstractView {
     const questionTwoArray = [...this.element.querySelectorAll(`[name='question2']`)];
 
     if (gameContent.classList.contains(`game__content--wide`)) {
+      if (this.model.debugMode) {
+        debugGame(`tinder-like`, this.model, this.element);
+      }
       this.element.addEventListener(`change`, () => {
         const value = gameContent.querySelector(`input:checked`).value;
         if (value === this.level.answers[0].type) {
@@ -40,6 +80,9 @@ export default class GameView extends AbstractView {
         }
       });
     } else if (gameContent.classList.contains(`game__content--triple`)) {
+      if (this.model.debugMode) {
+        debugGame(`one-of-three`, this.model, this.element);
+      }
       gameContent.addEventListener(`click`, (event) => {
         const cardUrl = event.target.querySelector(`img`).getAttribute(`src`);
         if (this.level.question === description) {
@@ -55,6 +98,9 @@ export default class GameView extends AbstractView {
         }
       });
     } else {
+      if (this.model.debugMode) {
+        debugGame(`two-of-two`, this.model, this.element);
+      }
       questionArray.forEach((element) => {
         element.addEventListener(`change`, () => {
           if (questionOneArray.some(checked) && questionTwoArray.some(checked)) {
@@ -74,11 +120,11 @@ export default class GameView extends AbstractView {
     }
   }
 
-  onAnswer(answer) {
-    return answer;
-  }
-
   onReturn() {
 
+  }
+
+  onAnswer(answer) {
+    return answer;
   }
 }

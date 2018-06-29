@@ -1,5 +1,13 @@
 @import "colors";
 
+.intro__wrapper {
+  &--fadeout {
+    animation-name: fadeout;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+  }
+}
+
 .intro {
   width: 800px;
   height: 740px;
@@ -26,6 +34,13 @@
 
   &:active {
     color: $link-active-color;
+  }
+
+  &--rotate {
+    animation-name: rotate;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 }
 

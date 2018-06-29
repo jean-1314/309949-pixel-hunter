@@ -2,6 +2,7 @@ import HeaderView from '../views/header-view';
 import GameView from '../views/game-view';
 import Application from '../application';
 import {GameConsts} from '../data/game-data';
+import {resizeImages} from '../game-functions/resize-images';
 
 const ONE_SECOND = 1000;
 
@@ -9,7 +10,7 @@ export default class GameScreen {
   constructor(model) {
     this.model = model;
     this.header = new HeaderView(this.model.state);
-    this.content = new GameView(this.model.getLevel(), this.model.answers);
+    this.content = new GameView(this.model);
     this.root = document.createElement(`div`);
     this.root.appendChild(this.header.element);
     this.root.appendChild(this.content.element);
@@ -21,6 +22,7 @@ export default class GameScreen {
   }
 
   start() {
+    this.model.checkIfDebug();
     this.model.resetTime();
     this.changeGame();
     this.model.interval = setInterval(() => {
@@ -46,7 +48,7 @@ export default class GameScreen {
 
   changeGame() {
     this.updateHeader();
-    const game = new GameView(this.model.getLevel(), this.model.answers);
+    const game = new GameView(this.model);
     game.onAnswer = this.answer.bind(this);
     this.updateView(game);
   }
@@ -54,6 +56,7 @@ export default class GameScreen {
   updateView(view) {
     this.root.replaceChild(view.element, this.content.element);
     this.content = view;
+    resizeImages(view.element);
   }
 
   answer(answer) {
