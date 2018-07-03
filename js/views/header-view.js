@@ -29,9 +29,7 @@ export default class HeaderView extends AbstractView {
   }
 
   bind() {
-    this.element.querySelector(`.back`).addEventListener(`click`, () => {
-      this.onReturn();
-    });
+    this.element.querySelector(`.back`).addEventListener(`click`, () => this.onReturn());
   }
   onReturn() {
 

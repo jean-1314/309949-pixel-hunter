@@ -21,4 +21,12 @@ export default class GreetingScreen {
   event() {
     Application.showRules();
   }
+
+  addFadein() {
+    this.element.classList.add(`greeting__wrapper--fadein`);
+  }
+
+  removeWrapper() {
+    this.element.classList.remove(`greeting__wrapper`);
+  }
 }
