@@ -25,9 +25,7 @@ export default class StatsView extends AbstractView {
 
   bind() {
     const returnBtn = this.element.querySelector(`.back`);
-    returnBtn.addEventListener(`click`, () => {
-      this.onReturn();
-    });
+    returnBtn.addEventListener(`click`, () => this.onReturn());
   }
 
   onReturn() {

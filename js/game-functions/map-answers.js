@@ -1,19 +1,13 @@
 import {AnswerTypes, GameConsts} from '../data/game-data';
 
-export const mapAnswers = (answers) => {
-  return answers.map((item) => {
-    let answer = ``;
-    if (item.correct) {
-      if (item.time > GameConsts.FAST_ANSWER) {
-        answer = AnswerTypes.FAST;
-      } else if (item.time < GameConsts.SLOW_ANSWER) {
-        answer = AnswerTypes.SLOW;
-      } else {
-        answer = AnswerTypes.NORMAL;
-      }
-    } else {
-      answer = AnswerTypes.WRONG;
+export const mapAnswers = (answers) => answers.map((item) => {
+  if (item.correct) {
+    if (item.time > GameConsts.FAST_ANSWER) {
+      return AnswerTypes.FAST;
+    } else if (item.time < GameConsts.SLOW_ANSWER) {
+      return AnswerTypes.SLOW;
     }
-    return answer;
-  });
-};
+    return AnswerTypes.NORMAL;
+  }
+  return AnswerTypes.WRONG;
+});

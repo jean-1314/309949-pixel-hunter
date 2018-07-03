@@ -1,6 +1,7 @@
 import footer from '../page-elements/footer';
 import AbstractView from './abstract-view';
 import {returnBtnTemplate} from '../page-elements/return-button';
+import {handleRules} from '../game-functions/handle-rules';
 
 export default class RulesView extends AbstractView {
   get template() {
@@ -29,37 +30,6 @@ export default class RulesView extends AbstractView {
   }
 
   bind() {
-    const nextBtn = this.element.querySelector(`.continue`);
-    const form = this.element.querySelector(`.rules__form`);
-    const nameInput = this.element.querySelector(`.rules__input`);
-    const returnBtn = this.element.querySelector(`.back`);
-
-    nameInput.addEventListener(`input`, () => {
-      nextBtn.disabled = nameInput.value === ``;
-    });
-
-    const clearInput = () => {
-      nameInput.value = ``;
-      nextBtn.disabled = true;
-    };
-
-    form.addEventListener(`submit`, (event) => {
-      event.preventDefault();
-      const name = nameInput.value;
-      this.onSubmit(name);
-      clearInput();
-    });
-
-    returnBtn.addEventListener(`click`, () => {
-      this.onReturn();
-    });
-  }
-
-  onSubmit() {
-
-  }
-
-  onReturn() {
-
+    handleRules(this.element);
   }
 }

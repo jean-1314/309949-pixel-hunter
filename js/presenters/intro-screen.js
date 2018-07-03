@@ -21,4 +21,8 @@ export default class IntroScreen {
   click() {
     Application.showGreeting();
   }
+
+  addFadeout() {
+    document.querySelector(`.intro__wrapper`).classList.add(`intro__wrapper--fadeout`);
+  }
 }
