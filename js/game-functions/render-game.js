@@ -1,8 +1,9 @@
+import {GameTypes} from '../data/game-data';
+
 export const renderGame = (level) => {
-  let gameContent = ``;
   switch (level.type) {
-    case `tinder-like`:
-      gameContent = `
+    case GameTypes.TINDER_LIKE:
+      return `
         <p class="game__task">${level.question}</p>
         <form class="game__content  game__content--wide">
           <div class="game__option">
@@ -18,9 +19,8 @@ export const renderGame = (level) => {
           </div>
         </form>
       `;
-      break;
-    case `two-of-two`:
-      gameContent = `
+    case GameTypes.TWO_OF_TWO:
+      return `
         <p class="game__task">${level.question}</p>
         <form class="game__content">
           <div class="game__option">
@@ -47,9 +47,8 @@ export const renderGame = (level) => {
           </div>
         </form>
       `;
-      break;
-    case `one-of-three`:
-      gameContent = `
+    case GameTypes.ONE_OF_THREE:
+      return `
         <p class="game__task">${level.question}</p>
         <form class="game__content  game__content--triple">
           <div class="game__option">
@@ -63,8 +62,6 @@ export const renderGame = (level) => {
           </div>
         </form>
       `;
-      break;
     default: throw new Error(`Unknown game type`);
   }
-  return gameContent;
 };

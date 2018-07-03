@@ -1,4 +1,3 @@
-import Application from './application';
 import {APP_ID} from './util';
 
 const SERVER_URL = `https://es.dump.academy/pixel-hunter`;
@@ -7,9 +6,8 @@ const DEFAULT_NAME = `YetAnotherDefaultName`;
 const checkStatus = (response) => {
   if (response.status >= 200 || response.status < 300) {
     return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
   }
+  throw new Error(`${response.status}: ${response.statusText}`);
 };
 
 const toJSON = (res) => res.json();
@@ -40,27 +38,33 @@ export default class Loader {
   }
 
   static preloadImages(data) {
+    const promise = [];
     const imageArray = [];
-    const successArray = [];
-    for (let item of data) {
-      item.answers.forEach((answer) => {
-        imageArray.push(answer.image.url);
-      });
-    }
-    const preloadImage = (url) => {
-      const image = new Image();
-      image.src = url;
-      image.onload = () => {
-        successArray.push(``);
-        if (imageArray.length === successArray.length) {
-          Application.showInitialGreeting();
-        }
-      };
 
-    };
-    for (let imageUrl of imageArray) {
-      preloadImage(imageUrl);
+    for (const item of data) {
+      item.answers.forEach((answer) => imageArray.push(answer.image.url));
     }
+
+    const preloadImage = (url) => {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+
+        image.src = url;
+
+        image.onload = () => {
+          resolve(url);
+        };
+
+        image.onerror = () => {
+          reject(new Error(`Image not loaded: ${url}`));
+        };
+      });
+    };
+
+    for (const imageUrl of imageArray) {
+      promise.push(preloadImage(imageUrl));
+    }
+
+    return Promise.all(promise);
   }
 }
-

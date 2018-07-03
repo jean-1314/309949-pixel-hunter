@@ -32,4 +32,10 @@ const AnswerTypes = Object.freeze({
   UNKNOWN: `unknown`
 });
 
-export {INITIAL_STATE, GameConsts, QuestionTypes, AnswerTypes};
+const GameTypes = Object.freeze({
+  TINDER_LIKE: `tinder-like`,
+  TWO_OF_TWO: `two-of-two`,
+  ONE_OF_THREE: `one-of-three`,
+});
+
+export {INITIAL_STATE, GameConsts, QuestionTypes, AnswerTypes, GameTypes};

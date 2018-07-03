@@ -3,8 +3,8 @@ import {countScore} from './count-score';
 import {GameConsts} from '../data/game-data';
 import {countStats} from './count-stats';
 
-export const renderStats = (state, answers, number) => {
-  return `
+export const renderStats = (state, answers, number) =>
+  `
     <table class="result__table">
       <tr>
         <td class="result__number">${number}.</td>
@@ -51,4 +51,3 @@ export const renderStats = (state, answers, number) => {
       ` : ``}
     </table>
   `;
-};
